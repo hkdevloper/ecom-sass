@@ -1,66 +1,251 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Project Summary
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Project Name:** Medical Store E-commerce Application
 
-## About Laravel
+**Objective:** To create an online e-commerce platform for medical stores where multiple stores can register and manage their products, orders, and inventory. Customers can browse and purchase products, track orders, and make custom orders with prescription uploads. The platform will offer region-specific product visibility and free delivery for orders over 500 INR.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Technologies Used:**
+- **Frontend:** Flutter
+- **Backend:** Laravel
+- **Database:** MySQL
+- **Storage:** Personal VPS for media files
+- **Location Services:** Google Maps API
+- **Payment Gateway:** Razorpay or similar
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# How to run the project 
+## Backend - Laravel 
+1. Clone the repository 
+2. Run `composer install` to install the dependencies 
+3. Create a `.env` file by copying the `.env.example` file 
+4. Run `php artisan key:generate` to generate the application key
+5. Run `php artisan migrate` to migrate the database tables 
+6. Run `php artisan db:seed` to seed the database with sample data 
+7. Run `php artisan serve` to start the Laravel development server 
+8. The backend will be running on `http://localhost:8000`
+9. You can access the API documentation at `http://localhost:8000/api/documentation` 
+10. You can access the admin panel at `http://localhost:8000/admin`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Frontend - Flutter 
+1. Clone the repository 
+2. Open the `flutter_app` directory in a code editor 
+3. Run `flutter pub get` to install the dependencies 
+4. Update the API URL in the `lib/utils/constants.dart` file 
+5. Run `flutter run` to start the Flutter application 
+6. The application will be running on the connected device or emulator 
+7. You can now register, login, and use the application 
+8. You can access the admin panel at `http://localhost:8000/admin` to manage the data
+9. You can access the API documentation at `http://localhost:8000/api/documentation` to view the available endpoints
 
-## Learning Laravel
+### Key Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **User Registration and Authentication**
+    - Sign-up, login, logout
+    - Email verification and password recovery
+    - Role-based access control (admin, store manager, customer)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Store Management**
+    - Store registration and profile management
+    - Store location management
+    - Dashboard for store owners
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Product Management**
+    - Add, edit, delete products
+    - Product categories and tags
+    - Upload product images
+    - Set regional availability
 
-## Laravel Sponsors
+4. **Inventory Management**
+    - Track stock levels
+    - Low stock alerts
+    - Inventory reports
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. **User Location Tracking**
+    - Geolocation tracking using Google Maps API
+    - Show products available in the user's region
 
-### Premium Partners
+6. **Order Management**
+    - Shopping cart functionality
+    - Order placement and confirmation
+    - Free delivery for orders above 500 INR
+    - Custom order feature with prescription upload
+    - Order tracking and history
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+7. **Billing System**
+    - Generate invoices
+    - Apply discounts and promo codes
+    - Payment gateway integration
 
-## Contributing
+8. **Notifications**
+    - Push notifications for order status updates
+    - Email and SMS notifications
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+9. **Reports and Analytics**
+    - Sales reports
+    - Customer analytics
+    - Inventory reports
 
-## Code of Conduct
+### Detailed Workflows
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **User Registration and Login:**
+    - Users sign up with email verification and login to access features based on their roles.
 
-## Security Vulnerabilities
+2. **Product Management:**
+    - Store managers add products with details and images, setting regional availability for better user targeting.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Order Placement:**
+    - Customers add products to the cart, proceed to checkout, and place orders. Orders over 500 INR get free delivery.
 
-## License
+4. **Custom Orders:**
+    - Customers upload prescriptions for products they cannot find. Store managers process these custom orders.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Development Process
+
+1. **Project Planning:**
+    - Define requirements, scope, and timeline with milestones.
+
+2. **System Design:**
+    - Design architecture, database schema, APIs, and UI/UX.
+
+3. **Implementation:**
+    - Develop frontend in Flutter and backend in Laravel, integrating MySQL and VPS for media storage.
+
+4. **Testing:**
+    - Conduct unit and integration testing to ensure functionality and performance.
+
+5. **Deployment:**
+    - Deploy the application on a suitable VPS, ensuring security and scalability.
+
+### Detailed Workflow for Main Features
+
+#### Registration and Authentication
+- **Frontend:** Flutter
+- **Backend:** Laravel with JWT for authentication
+- **Database:** User table with details and roles
+- **Workflow:** User signs up, receives an email verification link, verifies email, and logs in.
+
+#### Product Management
+- **Frontend:** Flutter with forms and image picker
+- **Backend:** Laravel with endpoints for CRUD operations
+- **Database:** Products table with fields for name, description, price, image URL, and region
+
+#### Order Management
+- **Frontend:** Flutter with cart functionality
+- **Backend:** Laravel with order processing logic
+- **Database:** Orders table with order details and status
+- **Workflow:** User adds products to the cart, places an order, and receives order status updates.
+
+#### Billing System
+- **Frontend:** Flutter with payment gateway integration
+- **Backend:** Laravel with Razorpay integration
+- **Workflow:** User completes payment for the order through the integrated payment gateway.
+
+#### Notifications
+- **Frontend:** Flutter with push notification support
+- **Backend:** Laravel with notification logic
+- **Workflow:** User receives push notifications for order status updates.
+
+### Additional Considerations
+- **Testing:** Implement unit testing and integration testing for the application.
+- **Security:** Ensure secure data transmission and storage, especially for sensitive information like user details and payment info.
+- **Performance Optimization:** Optimize the application for performance, considering the potential high volume of users and data.
+- **Scalability:** Design the system to be scalable, allowing the addition of more features and handling increased loads as more stores and users join the platform.
+
+### Future Enhancements
+- **Machine Learning:** Implement recommendation systems based on user preferences and purchase history.
+- **Chat Support:** Integrate chat support for customers to interact with store managers.
+- **Voice Search:** Add voice search functionality for users to search for products.
+- **Subscription Model:** Implement a subscription model for customers to receive regular supplies of medicines.
+- **Offline Mode:** Allow users to access the app and place orders in offline mode, syncing data when online.
+- **AR Integration:** Implement augmented reality features for users to visualize products before purchase.
+- **Social Media Integration:** Allow users to share products on social media platforms.
+- **Feedback System:** Implement a feedback system for users to rate products and services.
+- **Localization:** Add multilingual support for users from different regions.
+- **Accessibility:** Ensure the application is accessible to users with disabilities.
+- **Data Analytics:** Implement data analytics to track user behavior and improve the platform.
+
+### Project Timeline 
+- **Week 1:** Project planning, requirements gathering, and system design. 
+- **Week 2-3:** Frontend development in Flutter and backend development in Laravel. 
+- **Week 4:** Integration of frontend and backend, testing, and bug fixing. 
+- **Week 5:** Deployment on a suitable VPS, final testing, and user acceptance testing. 
+- **Week 6:** Final review, documentation, and project submission. 
+- **Week 7:** Post-launch support and maintenance. 
+- **Week 8:** Future enhancements and updates. 
+- **Week 9:** Final review and project closure. 
+- **Week 10:** Project handover and knowledge transfer. 
+- **Week 11:** Feedback collection and analysis. 
+- **Week 12:** Project evaluation and lessons learned. 
+- **Week 13:** Final report submission.
+- **Week 14:** Project presentation and demo.
+
+## Project Plan 
+### Week 1: Project Planning and System Design 
+- Define project scope, objectives, and requirements. 
+- Create a detailed project plan with milestones and timelines.
+- Design system architecture, database schema, and APIs.
+- Develop wireframes and UI/UX design for the application.
+- Finalize technologies and tools for development.
+- Assign roles and responsibilities to team members.
+- Set up project management tools for collaboration and tracking.
+- Conduct a kickoff meeting with the team to discuss the project plan.
+- Review and finalize the project plan with stakeholders.
+- Prepare documentation for the project plan and system design.
+
+### Week 2-3: Frontend and Backend Development
+- Set up the development environment for Flutter and Laravel.
+- Develop the frontend in Flutter with user registration and login screens.
+- Implement user authentication using JWT in Laravel.
+- Create API endpoints for user registration, login, and authentication.
+- Develop the product management module in Flutter with CRUD operations.
+
+### Week 4: Integration and Testing
+- Integrate the frontend and backend modules.
+- Test the application for functionality and performance.
+- Conduct unit testing for frontend and backend components.
+
+### Week 5: Deployment and Final Testing
+- Deploy the application on a suitable VPS.
+- Conduct final testing and bug fixing.
+- Perform user acceptance testing with stakeholders.
+
+### Week 6: Final Review and Documentation
+- Review the application for quality and performance.
+- Prepare documentation for the application.
+- Create user manuals and guides for the application.
+
+### Week 7: Post-launch Support and Maintenance
+- Provide support to users for issue resolution.
+- Monitor the application for performance and security.
+
+### Week 8: Future Enhancements and Updates
+- Implement additional features and enhancements.
+- Release updates and patches for the application.
+- Collect feedback from users for future improvements.
+
+### Week 9: Final Review and Project Closure
+- Review the project for completion and success.
+- Prepare a final report on the project.
+
+### Week 10: Project Handover and Knowledge Transfer
+- Hand over the project to stakeholders.
+
+### Week 11: Feedback Collection and Analysis
+- Collect feedback from stakeholders and users.
+- Analyze feedback for future improvements.
+- Implement changes based on feedback.
+
+### Week 12: Project Evaluation and Lessons Learned
+- Evaluate the project for success and lessons learned.
+- Document the project evaluation and lessons learned.
+
+### Week 13: Final Report Submission
+- Prepare and submit the final report on the project.
+
+### Conclusion 
+The Medical Store E-commerce Application project aims to provide a comprehensive online platform for medical stores to manage their products and orders efficiently while offering customers a user-friendly shopping experience.
+
+The project will leverage technologies like Flutter, Laravel, MySQL, and Google Maps API to create a robust e-commerce platform with features like user registration, product management, order placement, custom orders, billing system, notifications, and more. 
+
+The development process will follow a structured approach, including project planning, system design, implementation, testing, and deployment.
+
+By following this structured approach, the project aims to deliver a robust e-commerce platform tailored to the needs of medical stores and their customers, with a focus on usability, security, and performance.
