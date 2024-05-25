@@ -11,6 +11,25 @@ class Attribute extends Model
     protected $table = 'attributes';
     protected $fillable = ['name', 'type', 'label', 'status', 'store_id'];
 
+    public static array $types = [
+        'text' => 'Text',
+        'textarea' => 'Textarea',
+        'select' => 'Select',
+        'multiselect' => 'Multiselect',
+        'checkbox' => 'Checkbox',
+        'radio' => 'Radio',
+        'date' => 'Date',
+        'time' => 'Time',
+        'datetime' => 'Datetime',
+        'file' => 'File',
+        'image' => 'Image',
+        'color' => 'Color',
+        'price' => 'Price',
+        'weight' => 'Weight',
+        'dimension' => 'Dimension',
+        'html' => 'HTML',
+    ];
+
     public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class, 'store_id');
