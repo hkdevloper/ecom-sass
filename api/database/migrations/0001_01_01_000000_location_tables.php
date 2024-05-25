@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('country', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id')->index();
             $table->string('code');
             $table->string('name');
@@ -26,7 +25,6 @@ return new class extends Migration
         });
 
         Schema::create('cities', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id')->index();
             $table->string('name');
             $table->foreignId('state_id')->constrained('states')->onDelete('cascade');

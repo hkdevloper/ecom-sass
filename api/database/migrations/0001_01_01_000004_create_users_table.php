@@ -14,8 +14,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('primary_phone')->unique();
             $table->string('secondary_phone')->unique();
@@ -29,15 +28,19 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('timezone')->default('UTC');
-            $table->string('currency')->default('USD');
-            $table->string('locale')->default('en_US');
-            $table->string('theme')->default('default');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->timestamps();
-        });
+        // Create a default user
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@mail.com',
+            'primary_phone' => '1234567890',
+            'secondary_phone' => '1234567890',
+            'password' => bcrypt('admin'),
+            'address_id' => 1,
+            'ip_address' => '127.0.0.1',
+            'mac_address' => '00:00:00:00:00:00',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
@@ -63,7 +66,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
-        Schema::dropIfExists('settings');
         Schema::dropIfExists('store_categories');
     }
 };
