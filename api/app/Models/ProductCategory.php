@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Attribute extends Model
+class ProductCategory extends Model
 {
-    protected $table = 'attributes';
-    protected $fillable = ['name', 'type', 'label', 'status', 'store_id'];
+    protected $table = 'product_categories';
+    protected $fillable = ['store_id', 'name', 'slug', 'description', 'status', 'thumbnail'];
 
     public function store(): BelongsTo
     {
         return $this->belongsTo(Store::class, 'store_id');
     }
 
-    public function values(): HasMany
+    public function products(): HasMany
     {
-        return $this->hasMany(Value::class, 'attribute_id');
+        return $this->hasMany(Product::class, 'category_id');
     }
 }
