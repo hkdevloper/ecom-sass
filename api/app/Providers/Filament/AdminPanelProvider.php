@@ -18,6 +18,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -51,6 +52,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
+                FilamentGeneralSettingsPlugin::make()
             ])
             ->middleware([
                 EncryptCookies::class,
