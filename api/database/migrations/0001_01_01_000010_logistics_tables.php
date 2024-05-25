@@ -80,6 +80,5 @@ return new class extends Migration
         Schema::dropIfExists('shipping_methods');
         Schema::dropIfExists('courier_services');
         Schema::dropIfExists('couriers');
-
     }
 };

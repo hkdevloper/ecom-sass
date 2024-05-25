@@ -39,7 +39,7 @@ return new class extends Migration
             ['name' => 'Gifts', 'slug' => 'gifts', 'description' => 'All types of gift items', 'status' => 'active'],
             ['name' => 'Others', 'slug' => 'others', 'description' => 'All other items', 'status' => 'active'],
         ]);
-        
+
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -96,5 +96,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('stores');
+        Schema::dropIfExists('store_categories');
+        Schema::dropIfExists('store_details');
+        Schema::dropIfExists('store_social_media');
+        Schema::dropIfExists('store_additional_information');
     }
 };
