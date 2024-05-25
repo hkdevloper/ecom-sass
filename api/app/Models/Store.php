@@ -40,4 +40,15 @@ class Store extends Model
     {
         return $this->hasMany(StoreAdditionalInformation::class, 'store_id');
     }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function productCategories(): HasMany
+    {
+        return $this->hasMany(ProductCategory::class);
+    }
+
 }

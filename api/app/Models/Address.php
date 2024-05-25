@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Address extends Model
 {
@@ -24,4 +25,20 @@ class Address extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function suppliers(): HasMany
+    {
+        return $this->hasMany(Supplier::class);
+    }
+
+    public function stores(): HasMany
+    {
+        return $this->hasMany(Store::class);
+    }
+
+    public function couriers(): HasMany
+    {
+        return $this->hasMany(Courier::class);
+    }
+
 }

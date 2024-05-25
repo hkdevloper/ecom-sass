@@ -37,4 +37,10 @@ class Order extends Model
     {
         return $this->hasMany(OrderPayment::class, 'order_id');
     }
+    
+    public function statusHistory(): HasMany
+    {
+        return $this->hasMany(OrderStatus::class, 'order_id');
+    }
+
 }
