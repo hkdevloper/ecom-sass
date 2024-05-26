@@ -35,6 +35,7 @@ return new class extends Migration
             'primary_phone' => '1234567890',
             'secondary_phone' => '1234567890',
             'password' => bcrypt('admin'),
+            'email_verified_at' => now(),
             'address_id' => 1,
             'ip_address' => '127.0.0.1',
             'mac_address' => '00:00:00:00:00:00',

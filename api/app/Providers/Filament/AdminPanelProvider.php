@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Amendozaaguiar\FilamentRouteStatistics\FilamentRouteStatisticsPlugin;
 use Exception;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -54,6 +55,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
+                FilamentRouteStatisticsPlugin::make(),
                 FilamentGeneralSettingsPlugin::make()
                     ->setIcon('heroicon-o-cog')
                     ->setNavigationGroup('Settings')
