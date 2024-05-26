@@ -19,7 +19,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
             $table->string('name');
-            $table->string('slug')->unique();
             $table->string('description')->nullable();
             $table->string('status')->default('active');
             $table->string('thumbnail')->default('https://via.placeholder.com/150');
@@ -39,7 +38,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('slug')->unique();
             $table->string('status')->default('active');
             $table->string('type')->default('product');
             $table->float('mrp')->default(0);

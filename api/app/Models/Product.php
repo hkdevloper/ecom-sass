@@ -10,31 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Product extends Model
 {
     protected $table = 'products';
-    /*
-     * Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('slug')->unique();
-            $table->string('status')->default('active');
-            $table->string('type')->default('product');
-            $table->float('mrp')->default(0);
-            $table->float('purchase_price')->default(0);
-            $table->float('selling_price')->default(0);
-            $table->string('thumbnail')->default('https://via.placeholder.com/350x450');
-            $table->json('gallery')->nullable();
-            $table->boolean('is_visible')->default(true);
-            $table->dateTime('availability')->default(DB::raw('DATE_ADD(NOW(), INTERVAL 1 DAY)'));
-            $table->foreignId('category_id')->constrained('product_categories')->onDelete('cascade');
-            $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
-            $table->foreignId('brand_id')->constrained('brand')->onDelete('cascade');
-            $table->timestamps();
-        });
-     * */
     protected $fillable = [
         'name',
         'description',
-        'slug',
         'status',
         'type',
         'mrp',

@@ -12,6 +12,6 @@ class StoreSocialMedia extends Model
 
     public function store(): BelongsTo
     {
-        return $this->belongsTo(Store::class, 'store_id');
+        return $this->belongsTo(Store::class);
     }
 }

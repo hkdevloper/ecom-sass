@@ -26,19 +26,9 @@ class Address extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function suppliers(): HasMany
+    public function stores(): BelongsTo
     {
-        return $this->hasMany(Supplier::class);
-    }
-
-    public function stores(): HasMany
-    {
-        return $this->hasMany(Store::class);
-    }
-
-    public function couriers(): HasMany
-    {
-        return $this->hasMany(Courier::class);
+        return $this->belongsTo(Store::class);
     }
 
 }

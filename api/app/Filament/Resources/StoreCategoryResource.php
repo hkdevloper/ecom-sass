@@ -27,9 +27,6 @@ class StoreCategoryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(191),
                 Forms\Components\TextInput::make('description')
                     ->maxLength(191),
                 Forms\Components\TextInput::make('status')
@@ -48,8 +45,6 @@ class StoreCategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),

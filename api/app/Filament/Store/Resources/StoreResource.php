@@ -55,35 +55,50 @@ class StoreResource extends Resource
                         ]),
                         Forms\Components\RichEditor::make('description')
                             ->columnSpanFull(),
-
+                        Generic::getAddressForm('address', hideType: true),
                     ])->columnSpan(['lg' => 2]),
                 Forms\Components\Group::make()
-                ->schema([
-                    Forms\Components\Section::make([
-                        Forms\Components\FileUpload::make('logo')
-                            ->image(),
-                        Forms\Components\FileUpload::make('cover_image')
-                            ->image(),
-                    ]),
-                    Forms\Components\Section::make('store_details')
-                        ->heading('Store Details')
-                        ->relationship('details')
-                        ->schema([
-                            Forms\Components\TextInput::make('slug')
-                                ->hidden()
-                                ->default('')
-                                ->required()
-                                ->maxLength(191),
-                            Forms\Components\TextInput::make('website')
-                                ->maxLength(191),
-                            Forms\Components\TextInput::make('working_days'),
-                            Forms\Components\TimePicker::make('opening_time')
-                                ->required(),
-                            Forms\Components\TimePicker::make('closing_time')
-                                ->required(),
+                    ->schema([
+                        Forms\Components\Section::make([
+                            Forms\Components\FileUpload::make('logo')
+                                ->image(),
+                            Forms\Components\FileUpload::make('cover_image')
+                                ->image(),
                         ]),
-                ])->columnSpan(['lg' => 1]),
-                Generic::getAddressForm('address', hideType: true),
+                        Forms\Components\Section::make('store_details')
+                            ->heading('Store Details')
+                            ->relationship('details')
+                            ->schema([
+                                Forms\Components\TextInput::make('website')
+                                    ->maxLength(191),
+                                Forms\Components\TextInput::make('working_days')
+                                    ->numeric()
+                                    ->helperText('e.g. 1,2,3,4,5 for Mon-Fri, 6,7 for Sat-Sun')
+                                    ->hint('Enter working days')
+                                    ->maxLength(191),
+                                Forms\Components\TimePicker::make('opening_time')
+                                    ->helperText('e.g. 09:00 AM')
+                                    ->required(),
+                                Forms\Components\TimePicker::make('closing_time')
+                                    ->helperText('e.g. 06:00 PM')
+                                    ->required(),
+                            ]),
+                        Forms\Components\Section::make('store_social_media')
+                            ->heading('Store Social Media')
+                            ->relationship('socialMedia')
+                            ->schema([
+                                Forms\Components\TextInput::make('facebook')
+                                    ->maxLength(191),
+                                Forms\Components\TextInput::make('twitter')
+                                    ->maxLength(191),
+                                Forms\Components\TextInput::make('instagram')
+                                    ->maxLength(191),
+                                Forms\Components\TextInput::make('linkedin')
+                                    ->maxLength(191),
+                                Forms\Components\TextInput::make('youtube')
+                                    ->maxLength(191),
+                            ]),
+                    ])->columnSpan(['lg' => 1]),
             ])->columns(3);
     }
 
@@ -97,20 +112,11 @@ class StoreResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('logo')
+                Tables\Columns\TextColumn::make('thumbnail')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('cover_image'),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('type')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('address.id')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

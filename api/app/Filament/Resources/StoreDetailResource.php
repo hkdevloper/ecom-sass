@@ -27,9 +27,7 @@ class StoreDetailResource extends Resource
                 Forms\Components\Select::make('store_id')
                     ->relationship('store', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(191),
+
                 Forms\Components\TextInput::make('website')
                     ->maxLength(191),
                 Forms\Components\TextInput::make('working_days'),
@@ -49,8 +47,7 @@ class StoreDetailResource extends Resource
                 Tables\Columns\TextColumn::make('store.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('website')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('opening_time')

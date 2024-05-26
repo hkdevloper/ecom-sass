@@ -29,9 +29,6 @@ class BrandResource extends Resource
                 Forms\Components\TextInput::make('brand_name')
                     ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(191),
                 Forms\Components\TextInput::make('description')
                     ->maxLength(191),
                 Forms\Components\TextInput::make('status')
@@ -48,19 +45,13 @@ class BrandResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('store_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('brand_name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('description')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('thumbnail')
+                Tables\Columns\IconColumn::make('status')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

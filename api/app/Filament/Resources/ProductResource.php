@@ -34,9 +34,6 @@ class ProductResource extends Resource
                 ->label('SKU')
                 ->required()
                 ->maxLength(191),
-            Forms\Components\TextInput::make('slug')
-                ->required()
-                ->maxLength(191),
             Forms\Components\TextInput::make('status')
                 ->required()
                 ->maxLength(191)
@@ -79,8 +76,6 @@ class ProductResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sku')
                     ->label('SKU')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),

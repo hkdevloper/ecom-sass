@@ -37,13 +37,7 @@ class ProductCategoryResource extends Resource
                     ->hint('Enter category name')
                     ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('slug')
-                    ->default('')
-                    ->label('Slug')
-                    ->hint('Enter slug')
-                    ->hidden()
-                    ->required()
-                    ->maxLength(191),
+
                 Forms\Components\RichEditor::make('description')
                     ->columnSpanFull()
                     ->maxLength(191),
@@ -72,8 +66,7 @@ class ProductCategoryResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')

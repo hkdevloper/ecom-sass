@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Store extends Model
 {
@@ -26,24 +27,19 @@ class Store extends Model
         return $this->belongsTo(Address::class, 'address_id');
     }
 
-    public function details(): BelongsTo
+    public function details(): HasOne
     {
-        return $this->belongsTo(StoreDetail::class, 'store_id');
+        return $this->hasOne(StoreDetail::class);
     }
 
-    public function socialMedia(): HasMany
+    public function socialMedia(): HasOne
     {
-        return $this->hasMany(StoreSocialMedia::class, 'store_id');
+        return $this->hasOne(StoreSocialMedia::class);
     }
 
     public function additionalInformation(): HasMany
     {
         return $this->hasMany(StoreAdditionalInformation::class, 'store_id');
-    }
-
-    public function orders(): HasMany
-    {
-        return $this->hasMany(Order::class);
     }
 
     public function productCategories(): HasMany

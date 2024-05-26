@@ -4,7 +4,11 @@ namespace App\Filament\Store\Resources;
 
 use App\Filament\Store\Resources\ProductResource\Pages;
 use App\Filament\Store\Resources\ProductResource\RelationManagers;
+use App\Models\Brand;
+use App\Models\Inventory;
 use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\Store;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -33,26 +37,11 @@ class ProductResource extends Resource
                                 Forms\Components\TextInput::make('name')
                                     ->required()
                                     ->maxLength(255)
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
-                                        if ($operation !== 'create') {
-                                            return;
-                                        }
-
-                                        $set('slug', Str::slug($state));
-                                    }),
-
-                                Forms\Components\TextInput::make('slug')
-                                    ->disabled()
-                                    ->dehydrated()
-                                    ->required()
-                                    ->maxLength(255)
-                                    ->unique(Product::class, 'slug', ignoreRecord: true),
-
-                                Forms\Components\MarkdownEditor::make('description')
+                                    ->live(onBlur: true),
+                                Forms\Components\RichEditor::make('description')
                                     ->columnSpan('full'),
                             ])
-                            ->columns(2),
+                            ->columnSpanFull(),
 
                         Forms\Components\Section::make('Images')
                             ->schema([
@@ -96,13 +85,13 @@ class ProductResource extends Resource
                             ->schema([
                                 Forms\Components\TextInput::make('sku')
                                     ->label('SKU (Stock Keeping Unit)')
-                                    ->unique(Product::class, 'sku', ignoreRecord: true)
+                                    ->unique(Inventory::class, 'sku', ignoreRecord: true)
                                     ->maxLength(255)
                                     ->required(),
 
                                 Forms\Components\TextInput::make('barcode')
                                     ->label('Barcode (ISBN, UPC, GTIN, etc.)')
-                                    ->unique(Product::class, 'barcode', ignoreRecord: true)
+                                    ->unique(Inventory::class, 'barcode', ignoreRecord: true)
                                     ->maxLength(255)
                                     ->required(),
 
@@ -151,12 +140,27 @@ class ProductResource extends Resource
                         Forms\Components\Section::make('Associations')
                             ->schema([
                                 Forms\Components\Select::make('brand_id')
-                                    ->relationship('brand', 'name')
+                                    ->label('Brand')
+                                    ->native(false)
+                                    ->preload()
+                                    ->helperText('The brand of the product.')
+                                    ->options(fn () => Brand::pluck('brand_name', 'id'))
                                     ->searchable(),
                                 Forms\Components\Select::make('category_id')
-                                    ->relationship('categories', 'name')
-                                    ->multiple()
+                                    ->label('Category')
+                                    ->native(false)
+                                    ->searchable()
+                                    ->preload()
+                                    ->helperText('The category of the product.')
+                                    ->options(fn () => ProductCategory::pluck('name', 'id'))
                                     ->required(),
+                                Forms\Components\Select::make('store_id')
+                                    ->label('Store')
+                                    ->native(false)
+                                    ->preload()
+                                    ->helperText('Select the store where the product is available.')
+                                    ->options(fn () => Store::pluck('name', 'id'))
+                                    ->searchable(),
                             ]),
                     ])
                     ->columnSpan(['lg' => 1]),
@@ -172,8 +176,6 @@ class ProductResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('sku')
                     ->label('SKU')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
