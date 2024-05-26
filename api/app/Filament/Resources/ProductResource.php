@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Attribute;
 use App\Models\Product;
+use App\Utils\Generic;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -65,38 +66,8 @@ class ProductResource extends Resource
                 ->relationship('store', 'name')
                 ->required(),
         ];
-        foreach ($attributes as $attribute) {
-            match ($attribute->type) {
-                'text' => $formFields[] = Forms\Components\TextInput::make($attribute)
-                    ->label('this is label')
-                    ->default('')
-                    ->minValue(0)
-                    ->maxLength(191)
-                    ->hint('this is hint')
-                    ->nullable()
-                    ->hintColor('red')
-                    ->prefix('$')
-                    ->suffix('kg')
-                    ->required(),
-                'textarea', 'html' => $formFields[] = Forms\Components\Textarea::make($attribute)
-                    ->required(),
-                'select' => $formFields[] = Forms\Components\Select::make($attribute)
-                    ->options($attribute->values->pluck('value', 'value')),
-                'multiselect' => $formFields[] = Forms\Components\Select::make($attribute)
-                    ->options($attribute->values->pluck('value', 'value'))
-                    ->multiple(),
-                'checkbox' => $formFields[] = Forms\Components\Checkbox::make($attribute),
-                'radio' => $formFields[] = Forms\Components\Radio::make($attribute)->options($attribute->values->pluck('value', 'value')),
-                'date' => $formFields[] = Forms\Components\Datepicker::make($attribute)->required(),
-                'time' => $formFields[] = Forms\Components\Timepicker::make($attribute)->required(),
-                'datetime' => $formFields[] = Forms\Components\Datetimepicker::make($attribute)->required(),
-                'file', 'image' => $formFields[] = Forms\Components\FileUpload::make($attribute)->required(),
-                'color' => $formFields[] = Forms\Components\Colorpicker::make($attribute)->required(),
-                'price' => $formFields[] = Forms\Components\TextInput::make($attribute)->required()->numeric()->prefix('$'),
-                'weight' => $formFields[] = Forms\Components\TextInput::make($attribute)->required()->numeric()->suffix('kg'),
-                'dimension' => $formFields[] = Forms\Components\TextInput::make($attribute)->required()->numeric()->suffix('cm'),
-            };
-        }
+        foreach ($attributes as $attribute)
+            $formFields[] = Generic::getAttributeFormFields($attribute);
         return $form->schema($formFields);
     }
 

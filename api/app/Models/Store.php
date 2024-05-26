@@ -26,9 +26,9 @@ class Store extends Model
         return $this->belongsTo(Address::class, 'address_id');
     }
 
-    public function details(): HasMany
+    public function details(): BelongsTo
     {
-        return $this->hasMany(StoreDetail::class, 'store_id');
+        return $this->belongsTo(StoreDetail::class, 'store_id');
     }
 
     public function socialMedia(): HasMany

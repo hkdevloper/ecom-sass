@@ -18,6 +18,7 @@ class StoreCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Store Management';
+    protected static ?string $navigationLabel = 'Categories';
 
     public static function form(Form $form): Form
     {
@@ -35,9 +36,9 @@ class StoreCategoryResource extends Resource
                     ->required()
                     ->maxLength(191)
                     ->default('active'),
-                Forms\Components\TextInput::make('thumbnail')
+                Forms\Components\FileUpload::make('thumbnail')
                     ->required()
-                    ->maxLength(191)
+                    ->image()
                     ->default('https://via.placeholder.com/150'),
             ]);
     }

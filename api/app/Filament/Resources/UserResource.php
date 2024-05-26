@@ -48,12 +48,12 @@ class UserResource extends Resource
                 Forms\Components\Select::make('address_id')
                     ->relationship('address', 'id')
                     ->required(),
-                Forms\Components\TextInput::make('ip_address')
-                    ->required()
-                    ->maxLength(45),
-                Forms\Components\TextInput::make('mac_address')
-                    ->required()
-                    ->maxLength(17),
+                Forms\Components\Placeholder::make('ip_address')
+                    ->content(fn (User $record): string => $record->ip_address ?? request()->ip())
+                    ->label('IP Address'),
+                Forms\Components\Placeholder::make('mac_address')
+                    ->content(fn (User $record): string => $record->mac_address ?? '00:00:00:00:00:00')
+                    ->label('MAC Address'),
             ]);
     }
 

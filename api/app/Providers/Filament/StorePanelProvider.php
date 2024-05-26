@@ -3,7 +3,6 @@
 namespace App\Providers\Filament;
 
 use Amendozaaguiar\FilamentRouteStatistics\FilamentRouteStatisticsPlugin;
-use Exception;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -22,17 +21,16 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 
-class AdminPanelProvider extends PanelProvider
+class StorePanelProvider extends PanelProvider
 {
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('store')
+            ->path('store')
             ->login()
             ->registration()
             ->databaseNotifications()
@@ -40,27 +38,21 @@ class AdminPanelProvider extends PanelProvider
             ->passwordReset()
             ->profile(isSimple: false)
             ->colors([
-                'primary' => Color::Violet,
+                'primary' => Color::Blue,
             ])
             ->spa()
 //            ->unsavedChangesAlerts()
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Store/Resources'), for: 'App\\Filament\\Store\\Resources')
+            ->discoverPages(in: app_path('Filament/Store/Pages'), for: 'App\\Filament\\Store\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-
-            ])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
-                FilamentRouteStatisticsPlugin::make(),
-                FilamentGeneralSettingsPlugin::make()
-                    ->setIcon('heroicon-o-cog')
-                    ->setNavigationGroup('Settings')
-                    ->setTitle('General Settings')
-                    ->setNavigationLabel('General Settings'),
+            ])
+            ->discoverWidgets(in: app_path('Filament/Store/Widgets'), for: 'App\\Filament\\Store\\Widgets')
+            ->widgets([
+
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Store\Resources;
 
-use App\Filament\Resources\ProductCategoryResource\Pages;
+use App\Filament\Store\Resources\ProductCategoryResource\Pages;
 use App\Models\ProductCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -17,8 +17,7 @@ class ProductCategoryResource extends Resource
     protected static ?string $model = ProductCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Product Management';
-    protected static ?string $modelLabel = 'Product Category';
+    protected static ?string $navigationGroup = 'Product';
     protected static ?string $navigationLabel = 'Categories';
 
     public static function form(Form $form): Form
@@ -27,23 +26,40 @@ class ProductCategoryResource extends Resource
             ->schema([
                 Forms\Components\Select::make('store_id')
                     ->relationship('store', 'name')
+                    ->label('Store')
+                    ->hint('Select store')
+                    ->searchable()
+                    ->preload()
+                    ->native(false)
                     ->required(),
                 Forms\Components\TextInput::make('name')
+                    ->label('Category Name')
+                    ->hint('Enter category name')
                     ->required()
                     ->maxLength(191),
                 Forms\Components\TextInput::make('slug')
+                    ->default('')
+                    ->label('Slug')
+                    ->hint('Enter slug')
+                    ->hidden()
                     ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('description')
+                Forms\Components\RichEditor::make('description')
+                    ->columnSpanFull()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\ToggleButtons::make('status')
                     ->required()
-                    ->maxLength(191)
+                    ->options([
+                        'active' => 'Active',
+                        'inactive' => 'Inactive',
+                    ])
+                    ->label('Status')
+                    ->inline()
                     ->default('active'),
-                Forms\Components\TextInput::make('thumbnail')
+                Forms\Components\FileUpload::make('thumbnail')
                     ->required()
-                    ->maxLength(191)
-                    ->default('https://via.placeholder.com/150'),
+                    ->image()
+                    ->maxSize('2048'),
             ]);
     }
 

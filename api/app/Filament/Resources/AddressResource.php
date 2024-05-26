@@ -5,13 +5,23 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AddressResource\Pages;
 use App\Filament\Resources\AddressResource\RelationManagers;
 use App\Models\Address;
+use App\Models\Country;
+use App\Models\State;
+use App\Utils\Generic;
+use Dotswan\MapPicker\Fields\Map;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Collection;
 
 class AddressResource extends Resource
 {
@@ -25,31 +35,70 @@ class AddressResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('address')
+                TextInput::make('address')
                     ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('address2')
+                TextInput::make('address2')
                     ->maxLength(191),
-                Forms\Components\TextInput::make('landmark')
+                TextInput::make('landmark')
                     ->maxLength(191),
-                Forms\Components\TextInput::make('pin_code')
+                TextInput::make('pin_code')
                     ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('latitude')
+                TextInput::make('latitude')
+                    ->default('22.5726')
                     ->maxLength(191),
-                Forms\Components\TextInput::make('longitude')
+                TextInput::make('longitude')
+                    ->default('88.3639')
                     ->maxLength(191),
-                Forms\Components\TextInput::make('type')
+                TextInput::make('type')
                     ->maxLength(191),
-                Forms\Components\Select::make('city_id')
-                    ->relationship('city', 'name')
-                    ->required(),
-                Forms\Components\Select::make('state_id')
-                    ->relationship('state', 'name')
-                    ->required(),
-                Forms\Components\Select::make('country_id')
+                Select::make('country_id')
+                    ->label('Country')
+                    ->preload()
+                    ->live(onBlur: true)
                     ->relationship('country', 'name')
+                    ->searchable()
                     ->required(),
+                Select::make('state_id')
+                    ->label('State')
+                    ->options(fn(Get $get): ?Collection => Country::find($get('country_id'))?->states?->pluck('name', 'id'))
+                    ->live(onBlur: true)
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                Select::make('city_id')
+                    ->label('City')
+                    ->options(fn(Get $get): ?Collection => State::find($get('state_id'))?->cities?->pluck('name', 'id'))
+                    ->native(false)
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                Map::make('location')
+                    ->label('Location')
+                    ->columnSpanFull()
+                    ->afterStateUpdated(function (Get $get, Set $set, string|array|null $old, ?array $state): void {
+                        $set('latitude', $state['lat']);
+                        $set('longitude', $state['lng']);
+                    })
+                    ->afterStateHydrated(function ($state, $record, Set $set): void {
+                        $set('location', ['lat' => $record->latitude ?? 0, 'lng' => $record->longitude ?? 0]);
+                    })
+                    ->liveLocation()
+                    ->showMarker()
+                    ->markerColor('#22c55eff')
+                    ->showFullscreenControl()
+                    ->showZoomControl()
+                    ->draggable()
+                    ->tilesUrl('https://tile.openstreetmap.de/{z}/{x}/{y}.png')
+                    ->zoom(15)
+                    ->detectRetina()
+                    ->showMyLocationButton()
+                    ->extraTileControl([])
+                    ->extraControl([
+                        'zoomDelta' => 1,
+                        'zoomSnap' => 2,
+                    ])
             ]);
     }
 

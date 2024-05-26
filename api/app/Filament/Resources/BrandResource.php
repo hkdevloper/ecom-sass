@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AttributeResource\Pages;
-use App\Models\Attribute;
-use App\Utils\Generic;
+use App\Filament\Resources\BrandResource\Pages;
+use App\Filament\Resources\BrandResource\RelationManagers;
+use App\Models\Brand;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,45 +13,35 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AttributeResource extends Resource
+class BrandResource extends Resource
 {
-    protected static ?string $model = Attribute::class;
+    protected static ?string $model = Brand::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Product Management';
-    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('store_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('brand_name')
                     ->required()
                     ->maxLength(191),
-                Forms\Components\Select::make('type')
-                    ->options(Generic::getAttributeTypes())
-                    ->native(false)
-                    ->required(),
-                Forms\Components\TextInput::make('label')
+                Forms\Components\TextInput::make('slug')
+                    ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('default')
+                Forms\Components\TextInput::make('description')
                     ->maxLength(191),
-                Forms\Components\TextInput::make('hint')
-                    ->maxLength(191),
-                Forms\Components\ColorPicker::make('hint_color'),
-                Forms\Components\TextInput::make('prefix')
-                    ->maxLength(191),
-                Forms\Components\TextInput::make('suffix')
-                    ->maxLength(191),
-                Forms\Components\Checkbox::make('is_required'),
-                Forms\Components\Checkbox::make('is_unique'),
                 Forms\Components\TextInput::make('status')
                     ->required()
                     ->maxLength(191)
                     ->default('active'),
-                Forms\Components\Select::make('store_id')
-                    ->relationship('store', 'name')
-                    ->required(),
+                Forms\Components\TextInput::make('thumbnail')
+                    ->required()
+                    ->maxLength(191)
+                    ->default('https://via.placeholder.com/150'),
             ]);
     }
 
@@ -59,17 +49,19 @@ class AttributeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('store_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('brand_name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('type')
+                Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('label')
+                Tables\Columns\TextColumn::make('description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('store.name')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('thumbnail')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -96,7 +88,7 @@ class AttributeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageAttributes::route('/'),
+            'index' => Pages\ManageBrands::route('/'),
         ];
     }
 }

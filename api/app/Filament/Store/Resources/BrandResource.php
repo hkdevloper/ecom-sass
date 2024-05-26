@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Store\Resources;
 
-use App\Filament\Resources\ProductCategoryResource\Pages;
-use App\Models\ProductCategory;
+use App\Filament\Store\Resources\BrandResource\Pages;
+use App\Filament\Store\Resources\BrandResource\RelationManagers;
+use App\Models\Brand;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,38 +13,35 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ProductCategoryResource extends Resource
+class BrandResource extends Resource
 {
-    protected static ?string $model = ProductCategory::class;
+    protected static ?string $model = Brand::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Product Management';
-    protected static ?string $modelLabel = 'Product Category';
-    protected static ?string $navigationLabel = 'Categories';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('store_id')
-                    ->relationship('store', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('brand_name')
+                    ->label('Brand Name')
+                    ->hint('Enter the brand name')
                     ->required()
                     ->maxLength(191),
-                Forms\Components\TextInput::make('slug')
+                Forms\Components\ToggleButtons::make('status')
                     ->required()
-                    ->maxLength(191),
-                Forms\Components\TextInput::make('description')
-                    ->maxLength(191),
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(191)
+                    ->options([
+                        'active' => 'Active',
+                        'inactive' => 'Inactive',
+                    ])
+                    ->inline()
                     ->default('active'),
-                Forms\Components\TextInput::make('thumbnail')
-                    ->required()
-                    ->maxLength(191)
-                    ->default('https://via.placeholder.com/150'),
+                Forms\Components\RichEditor::make('description')
+                    ->columnSpanFull()
+                    ->maxLength(191),
+                Forms\Components\FileUpload::make('thumbnail')
+                    ->image()
+                    ->required(),
             ]);
     }
 
@@ -51,10 +49,10 @@ class ProductCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('store.name')
+                Tables\Columns\TextColumn::make('store_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('brand_name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
@@ -90,7 +88,7 @@ class ProductCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageProductCategories::route('/'),
+            'index' => Pages\ManageBrands::route('/'),
         ];
     }
 }
