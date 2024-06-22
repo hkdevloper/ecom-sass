@@ -8,6 +8,7 @@ use App\Models\State;
 use Dotswan\MapPicker\Fields\Map;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Component;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
@@ -51,12 +52,12 @@ class Generic
             'markdown_editor' => 'Markdown Editor',
         ];
     }
-    public static function getAttributeFormFields($attribute): array
+    public static function getAttributeFormFields($attribute): Component
     {
-        $formFields = [];
+        $formFields = null;
         switch ($attribute->type) {
             case 'text':
-                $formFields[] = TextInput::make($attribute->name)
+                $formFields = TextInput::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->default($attribute->default)
@@ -67,14 +68,14 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'textarea':
-                $formFields[] = Textarea::make($attribute->name)
+                $formFields = Textarea::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->default($attribute->default)
                     ->required($attribute->is_required);
                 break;
             case 'select':
-                $formFields[] = Select::make($attribute->name)
+                $formFields = Select::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
@@ -82,7 +83,7 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'multiselect':
-                $formFields[] = Select::make($attribute->name)
+                $formFields = Select::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
@@ -91,14 +92,14 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'checkbox':
-                $formFields[] = Checkbox::make($attribute->name)
+                $formFields = Checkbox::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
                     ->required($attribute->is_required);
                 break;
             case 'radio':
-                $formFields[] = Radio::make($attribute->name)
+                $formFields = Radio::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
@@ -106,35 +107,35 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'date':
-                $formFields[] = Datepicker::make($attribute->name)
+                $formFields = Datepicker::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
                     ->required($attribute->is_required);
                 break;
             case 'time':
-                $formFields[] = Timepicker::make($attribute->name)
+                $formFields = Timepicker::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
                     ->required($attribute->is_required);
                 break;
             case 'datetime':
-                $formFields[] = Datetimepicker::make($attribute->name)
+                $formFields = Datetimepicker::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
                     ->required($attribute->is_required);
                 break;
             case 'file':
-                $formFields[] = FileUpload::make($attribute->name)
+                $formFields = FileUpload::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
                     ->required($attribute->is_required);
                 break;
             case 'image':
-                $formFields[] = FileUpload::make($attribute->name)
+                $formFields = FileUpload::make($attribute->name)
                     ->label($attribute->label)
                     ->image()
                     ->hint($attribute->hint)
@@ -142,14 +143,14 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'color':
-                $formFields[] = Colorpicker::make($attribute->name)
+                $formFields = Colorpicker::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
                     ->required($attribute->is_required);
                 break;
             case 'price':
-                $formFields[] = TextInput::make($attribute->name)
+                $formFields = TextInput::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->default($attribute->default)
@@ -157,7 +158,7 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'weight':
-                $formFields[] = TextInput::make($attribute->name)
+                $formFields = TextInput::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->default($attribute->default)
@@ -166,7 +167,7 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'dimension':
-                $formFields[] = TextInput::make($attribute->name)
+                $formFields = TextInput::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->default($attribute->default)
@@ -175,26 +176,26 @@ class Generic
                     ->required($attribute->is_required);
                 break;
             case 'rich_editor':
-                $formFields[] = RichEditor::make($attribute->name)
+                $formFields = RichEditor::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->required($attribute->is_required);
                 break;
             case 'markdown_editor':
-                $formFields[] = MarkdownEditor::make($attribute->name)
+                $formFields = MarkdownEditor::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->required($attribute->is_required);
                 break;
             case 'toggle':
-                $formFields[] = Toggle::make($attribute->name)
+                $formFields = Toggle::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)
                     ->required($attribute->is_required);
                 break;
             case 'toggle_buttons':
-                $formFields[] = ToggleButtons::make($attribute->name)
+                $formFields = ToggleButtons::make($attribute->name)
                     ->label($attribute->label)
                     ->hint($attribute->hint)
                     ->hintColor($attribute->hint_color)

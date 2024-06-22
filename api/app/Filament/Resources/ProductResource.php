@@ -55,7 +55,8 @@ class ProductResource extends Resource
                 ->required()
                 ->maxLength(191)
                 ->default('https://via.placeholder.com/350x450'),
-            Forms\Components\TextInput::make('gallery'),
+            Forms\Components\FileUpload::make('gallery')
+                ->multiple(),
             Forms\Components\Select::make('category_id')
                 ->relationship('category', 'name')
                 ->required(),
@@ -63,8 +64,9 @@ class ProductResource extends Resource
                 ->relationship('store', 'name')
                 ->required(),
         ];
-        foreach ($attributes as $attribute)
+        foreach ($attributes as $attribute){
             $formFields[] = Generic::getAttributeFormFields($attribute);
+        }
         return $form->schema($formFields);
     }
 
