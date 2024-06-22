@@ -12,24 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('country', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id')->index();
             $table->string('code');
             $table->string('name');
             $table->integer('phonecode');
+            $table->timestamps();
         });
 
         Schema::create('states', function (Blueprint $table) {
             $table->increments('id')->index();
             $table->string('name');
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
+            $table->timestamps();
         });
 
         Schema::create('cities', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id')->index();
             $table->string('name');
             $table->foreignId('state_id')->constrained('states')->onDelete('cascade');
+            $table->timestamps();
         });
 
         Schema::create('addresses', function (Blueprint $table) {
@@ -44,6 +45,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->foreignId('state_id')->constrained('states')->onDelete('cascade');
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
+            $table->timestamps();
         });
 
     }

@@ -5,7 +5,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 })->name('welcome');
 
