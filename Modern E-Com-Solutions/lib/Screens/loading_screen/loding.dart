@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../app/app_consts.dart';
+import '../../models/api_response.dart';
+import '../../services/user_services.dart';
+import '../home_screen/home_screen.dart';
+
 class LoadingScreen extends StatefulWidget{
     const LoadingScreen({super.key});
 
@@ -9,6 +14,18 @@ class LoadingScreen extends StatefulWidget{
 
 class _LoadingScreenState extends State<LoadingScreen> {
   void _loadUserInfo() async {
+    ApiResponse response = await getUserDetails();
+    if (response.error == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+              (route) => false);
+    } else if (response.error == unauthorized) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+              (route) => false);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${response.error}')));
+    }
   }
 
   @override
@@ -26,9 +43,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
           .height,
       color: Colors.white,
       child: Center(
-        // child: Image.network('https://media.giphy.com/media/LP01OPcV97bomkxOAk/giphy.gif'),
         child: CircularProgressIndicator(),
       ),
     );
   }
 }
+
