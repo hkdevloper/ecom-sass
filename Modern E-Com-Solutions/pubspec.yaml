@@ -42,6 +42,17 @@ dependencies:
   dropdown_search: ^5.0.2
   image_picker: ^0.8.5+3
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/pictures/logo.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  windows:
+    generate: true
+    image_path: "assets/images/icon-1024x1024.png"
+    icon_size: 48
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
