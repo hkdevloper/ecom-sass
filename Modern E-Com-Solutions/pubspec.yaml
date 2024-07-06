@@ -73,10 +73,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/fonts/
-    - assets/svg/home.svg
-    - assets/svg/category.svg
-    - assets/svg/notification.svg
-    - assets/svg/profile.svg
+    - assets/pictures/
+    - assets/svg/
   fonts:
     - family: Poppins
       fonts:

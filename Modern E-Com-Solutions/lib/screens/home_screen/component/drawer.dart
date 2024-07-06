@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:e_com_solutions/app/app_consts.dart';
 
-import '../../../app/app_consts.dart';
-import '../../profile_screen/profile_screen.dart';
+import 'package:e_com_solutions/services/user_services.dart';
+import 'package:e_com_solutions/screens/profile_screen/profile_screen.dart';
+import 'package:e_com_solutions/screens/signin_screen/signin_screen.dart';
 
 class BuildDeawer extends StatefulWidget {
   const BuildDeawer({super.key});
@@ -60,18 +62,18 @@ class _BuildDeawerState extends State<BuildDeawer> {
               title: const Text("About"),
               onTap: () {},
             ),
-            // ListTile(
-            //   leading: Icon(Icons.logout_outlined),
-            //   title: Text("Logout"),
-            //   onTap: () {
-            //     logout().then((value) => {
-            //       Navigator.of(context).pushAndRemoveUntil(
-            //           MaterialPageRoute(
-            //               builder: (context) => SignInScreen()),
-            //               (route) => false)
-            //     });
-            //   },
-            // ),
+            ListTile(
+              leading: Icon(Icons.logout_outlined),
+              title: Text("Logout"),
+              onTap: () {
+                logout().then((value) => {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => SignInScreen()),
+                          (route) => false)
+                });
+              },
+            ),
           ],
         ),
       ),

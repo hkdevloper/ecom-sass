@@ -36,3 +36,8 @@ Future<String> getToken() async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   return pref.getString('token') ?? '';
 }
+
+Future<bool> logout() async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  return pref.remove('token');
+}

@@ -14,3 +14,4 @@ const userURL = '$baseURL/user';
 const serverError = 'Server Error';
 const unauthorized = 'Unauthrorized';
 const somethingWentWrong = 'Something Went Wrong, Try Again!';
+const logoutURL = '$baseURL/logout';
