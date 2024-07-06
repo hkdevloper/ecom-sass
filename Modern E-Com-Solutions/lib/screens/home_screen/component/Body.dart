@@ -35,14 +35,14 @@ class _BodyState extends State<Body> {
               SliverToBoxAdapter(
                 child: SizedBox(height: 20),
               ),
-               CategoryTitle(title: 'Category', trailingTitle: 'View All'),
-               HomeCategoryList(),
-               CategoryTitle(title: 'Popular', trailingTitle: 'View All'),
-               //HomePopularList(),//issue
-              // FeedNews(),//issue
+              FeedNews(),
               SliverToBoxAdapter(
                 child: SizedBox(height: 15),
               ),
+               CategoryTitle(title: 'Category', trailingTitle: 'View All'),
+               HomeCategoryList(),
+               CategoryTitle(title: 'Popular', trailingTitle: 'View All'),
+               HomePopularList(),
             ],
           ),
         ),
