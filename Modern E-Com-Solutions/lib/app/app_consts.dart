@@ -9,9 +9,28 @@ class AppColors {
   static const kPrimaryLightColor = Color(0xFF2E2E2E);
 }
 
-const baseURL = 'https://crosamo.com/api';
-const userURL = '$baseURL/user';
-const serverError = 'Server Error';
-const unauthorized = 'Unauthrorized';
-const somethingWentWrong = 'Something Went Wrong, Try Again!';
+// Form Error
+final RegExp emailValidatorRegExp =
+RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+const String kNameNullError = "Please Enter your name";
+const String kEmailNullError = "Please Enter your email";
+const String kInvalidEmailError = "Please Enter Valid Email";
+const String kPassNullError = "Please Enter your password";
+const String kShortPassError = "Password is too short";
+const String kMatchPassError = "Passwords don't match";
+const String kNamelNullError = "Please Enter your name";
+const String kPhoneNumberNullError = "Please Enter your phone number";
+const String kAddressNullError = "Please Enter your address";
+
+// API
+const baseURL = '';
+const loginURL = '$baseURL/login';
+const registerURL = '$baseURL/register';
 const logoutURL = '$baseURL/logout';
+const userURL = '$baseURL/user';
+const productURL = '$baseURL/products';
+const commentURL = '$baseURL/comments';
+
+const serverError = 'Server Error';
+const unauthorized = 'Unauthorized';
+const somethingWentWrong = 'Something Went Wrong, Try Again!';
