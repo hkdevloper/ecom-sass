@@ -17,11 +17,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     ApiResponse response = await getUserDetails();
     if (response.error == null) {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
               (route) => false);
     } else if (response.error == unauthorized) {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
               (route) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${response.error}')));
@@ -42,7 +42,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           .size
           .height,
       color: Colors.white,
-      child: Center(
+      child: const Center(
         child: CircularProgressIndicator(),
       ),
     );
