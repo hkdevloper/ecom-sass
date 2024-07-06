@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import 'Screens/loading_screen/loding.dart';
+import 'screens/home_screen/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Saas Application',
       theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(),
+        textTheme: TextTheme(
+          displayLarge: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 32.0),
+          headlineSmall: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold, fontSize: 18.0),
+          bodyMedium: TextStyle(fontFamily: 'Poppins', fontSize: 14.0),
+        ),
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const LoadingScreen(),
+      home: const HomeScreen(),
     );
   }
 }
