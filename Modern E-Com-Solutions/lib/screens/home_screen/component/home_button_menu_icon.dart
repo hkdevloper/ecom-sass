@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../app/app_consts.dart';
+import 'package:e_com_solutions/app/app_consts.dart';
 
 BottomNavigationBarItem homeBottomMenuIcon({
   required final int itemIndex,
