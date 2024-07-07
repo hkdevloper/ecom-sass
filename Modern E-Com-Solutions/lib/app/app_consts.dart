@@ -1,5 +1,8 @@
 import 'dart:ui';
 
+import 'package:e_com_solutions/size_config.dart';
+import 'package:flutter/material.dart';
+
 class AppColors {
   static const Color darkGrey = Color.fromRGBO(64, 64, 64, 1);
   static const Color lightGrey = Color.fromRGBO(176, 176, 176, 1);
@@ -21,6 +24,14 @@ const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
+
+
+final headingStyle = TextStyle(
+  fontSize: getProportionateScreenWidth(28),
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+  height: 1.5,
+);
 
 // API
 const baseURL = '';

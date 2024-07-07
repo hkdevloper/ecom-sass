@@ -1,3 +1,4 @@
+import 'package:e_com_solutions/screens/signin_screen/components/body.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -10,10 +11,8 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child:  Scaffold(
-          body: Text("SignInScreen"),
-        )
-     );
+    return Scaffold(
+      body: Body()
+    );
   }
 }
