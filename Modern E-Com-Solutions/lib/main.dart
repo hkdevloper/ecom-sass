@@ -1,11 +1,14 @@
+import 'package:e_com_solutions/screens/home_screen/home_screen.dart';
 import 'package:e_com_solutions/screens/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: SignUpScreen(),
+      home: const HomeScreen(),
     );
   }
 }
