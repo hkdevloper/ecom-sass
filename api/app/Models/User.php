@@ -2,22 +2,26 @@
 
 namespace App\Models;
 
-use Exception;
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Panel;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Edwink\FilamentUserActivity\Traits\UserActivityTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail, FilamentUser
+class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
-
-    protected $table = 'users';
-    protected $primaryKey = 'id';
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use HasTeams;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
+    use UserActivityTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -26,14 +30,9 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     protected $fillable = [
         'name',
         'email',
-        'primary_phone',
-        'secondary_phone',
-        'profile_picture',
         'password',
-        'address_id',
-        'ip_address',
-        'mac_address',
     ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -42,31 +41,18 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
-     * @throws Exception
+     * The accessors to append to the model's array form.
+     *
+     * @var array<int, string>
      */
-    public function canAccessPanel(Panel $panel): bool
-    {
-        if ($panel->getId() === 'admin') {
-            return $this->email === 'admin@mail.com';
-        }
-        if ($panel->getId() === 'store') {
-            return $this->email_verified_at !== null;
-        }
-        return true;
-    }
-
-    public function address(): BelongsTo
-    {
-        return $this->belongsTo(Address::class);
-    }
-
-    public function invoices(): HasMany
-    {
-        return $this->hasMany(Invoice::class, 'customer_id');
-    }
+    protected $appends = [
+        'profile_photo_url',
+    ];
 
     /**
      * Get the attributes that should be cast.
@@ -80,5 +66,4 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
             'password' => 'hashed',
         ];
     }
-
 }

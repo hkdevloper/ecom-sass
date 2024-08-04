@@ -1,0 +1,30 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Explicitly declare text files to be normalized and converted to LF in repository
+*.c text
+*.cpp text
+*.h text
+*.html text
+*.css text
+*.js text
+*.json text
+*.md text
+*.py text
+
+# Declare binary files to be untouched
+*.jpg binary
+*.png binary
+*.gif binary
+*.zip binary
+*.pdf binary
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
