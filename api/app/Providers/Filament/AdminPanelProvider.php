@@ -21,6 +21,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
+use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -56,6 +57,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
                 //FilamentRouteStatisticsPlugin::make(),
+                FilamentEcommercePlugin::make(),
                 FilamentGeneralSettingsPlugin::make()
                     ->setIcon('heroicon-o-cog')
                     ->setNavigationGroup('Settings')

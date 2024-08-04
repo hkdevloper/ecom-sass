@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('cities123', function (Blueprint $table) {
             $table->increments('id')->index();
             $table->string('name');
             $table->foreignId('state_id')->constrained('states')->onDelete('cascade');
@@ -57,7 +57,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('countries');
         Schema::dropIfExists('states');
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('cities123');
         Schema::dropIfExists('addresses');
     }
 };

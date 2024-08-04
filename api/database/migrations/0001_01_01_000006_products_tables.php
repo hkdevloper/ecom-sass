@@ -34,7 +34,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('products12', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
@@ -127,7 +127,7 @@ return new class extends Migration
         Schema::dropIfExists('attributes');
         Schema::dropIfExists('shipping_details');
         Schema::dropIfExists('inventory');
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('products12');
         Schema::dropIfExists('brand');
         Schema::dropIfExists('product_categories');
     }
