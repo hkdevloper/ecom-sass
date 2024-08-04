@@ -55,7 +55,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
-                FilamentRouteStatisticsPlugin::make(),
+                //FilamentRouteStatisticsPlugin::make(),
                 FilamentGeneralSettingsPlugin::make()
                     ->setIcon('heroicon-o-cog')
                     ->setNavigationGroup('Settings')
