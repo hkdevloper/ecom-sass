@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -10,14 +11,13 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table): void {
             $table->id();
-
-            $table->string('group')->unique();
-            $table->string('name')->unique();
+            $table->string('group', 191);
+            $table->string('name', 191);
             $table->boolean('locked')->default(false);
             $table->json('payload');
-
             $table->timestamps();
-
+            // $table->unique(['group', 'name']);
         });
+        
     }
 };
