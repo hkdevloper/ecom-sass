@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use Amendozaaguiar\FilamentRouteStatistics\FilamentRouteStatisticsPlugin;
+use Edwink\FilamentUserActivity\FilamentUserActivityPlugin;
 use Exception;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -58,6 +59,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
                 FilamentSimplePagesPlugin::make(),
+                FilamentUserActivityPlugin::make(),
                 FilamentEcommercePlugin::make(),
                 FilamentAccountsPlugin::make()
                     ->useAccountMeta()
