@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8635d6925c8e4032dd02411e179fd553",
+    "content-hash": "c3da2401426bb06580b4f97df6c7043d",
     "packages": [
         {
             "name": "amendozaaguiar/filament-route-statistics",
@@ -10321,6 +10321,79 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.2.7"
             },
             "time": "2023-12-08T13:03:43+00:00"
+        },
+        {
+            "name": "tobiasla78/filament-simple-pages",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tobiasla78/filament-simple-pages.git",
+                "reference": "63ef18dd4ac78af983e218ac65139f9927ad478d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tobiasla78/filament-simple-pages/zipball/63ef18dd4ac78af983e218ac65139f9927ad478d",
+                "reference": "63ef18dd4ac78af983e218ac65139f9927ad478d",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^7.9",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.1",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tobiasla78\\FilamentSimplePages\\FilamentSimplePagesServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentSimplePages": "Tobiasla78\\FilamentSimplePages\\Facades\\FilamentSimplePages"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tobiasla78\\FilamentSimplePages\\": "src/",
+                    "Tobiasla78\\FilamentSimplePages\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Ladzenski",
+                    "email": "tobiasladz@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is my package filament-simple-pages",
+            "homepage": "https://github.com/tobiasla78/filament-simple-pages",
+            "keywords": [
+                "filament-simple-pages",
+                "laravel",
+                "tobiasla78"
+            ],
+            "support": {
+                "issues": "https://github.com/tobiasla78/filament-simple-pages/issues",
+                "source": "https://github.com/tobiasla78/filament-simple-pages"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tobiasla78",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-23T11:17:36+00:00"
         },
         {
             "name": "tomatophp/console-helpers",

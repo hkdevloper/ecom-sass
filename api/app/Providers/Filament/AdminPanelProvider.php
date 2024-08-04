@@ -21,7 +21,10 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
+use Tobiasla78\FilamentSimplePages\FilamentSimplePagesPlugin;
+use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
+use TomatoPHP\FilamentPlugins\FilamentPluginsPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -44,20 +47,27 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Violet,
             ])
             ->spa()
-//            ->unsavedChangesAlerts()
+            //            ->unsavedChangesAlerts()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-
-            ])
+            ->widgets([])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
-                //FilamentRouteStatisticsPlugin::make(),
+                FilamentSimplePagesPlugin::make(),
                 FilamentEcommercePlugin::make(),
+                FilamentAccountsPlugin::make()
+                    ->useAccountMeta()
+                    ->showAddressField()
+                    ->showTypeField()
+                    ->useRequests()
+                    ->useContactUs()
+                    ->useLoginBy()
+                    ->useAvatar()
+                    ->useAPIs(),
                 FilamentGeneralSettingsPlugin::make()
                     ->setIcon('heroicon-o-cog')
                     ->setNavigationGroup('Settings')
