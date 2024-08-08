@@ -20,6 +20,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
 use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
+use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -45,6 +46,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
                 FilamentEcommercePlugin::make(),
+                FilamentLocationsPlugin::make(), 
                 FilamentAccountsPlugin::make()
                     ->useLocations()
                     ->useAccountMeta()
