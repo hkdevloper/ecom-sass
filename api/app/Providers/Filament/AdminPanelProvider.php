@@ -57,8 +57,8 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
-                FilamentSimplePagesPlugin::make(),
-                FilamentUserActivityPlugin::make(),
+                //FilamentSimplePagesPlugin::make(),
+                //FilamentUserActivityPlugin::make(),
                 FilamentAlertsPlugin::make(),
                 FilamentEcommercePlugin::make(),
                 FilamentLocationsPlugin::make(),
@@ -77,11 +77,11 @@ class AdminPanelProvider extends PanelProvider
                     ->useTeams()
                     ->useAvatar()
                     ->useAPIs(),
-                FilamentGeneralSettingsPlugin::make()
-                    ->setIcon('heroicon-o-cog')
-                    ->setNavigationGroup('Settings')
-                    ->setTitle('General Settings')
-                    ->setNavigationLabel('General Settings'),
+                // FilamentGeneralSettingsPlugin::make()
+                //     ->setIcon('heroicon-o-cog')
+                //     ->setNavigationGroup('Settings')
+                //     ->setTitle('General Settings')
+                //     ->setNavigationLabel('General Settings'),
             ])
             ->middleware([
                 EncryptCookies::class,
