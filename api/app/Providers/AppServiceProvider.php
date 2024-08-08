@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // 191 is the default length for MySQL and MariaDB
+        \Illuminate\Support\Facades\Schema::defaultStringLength(191); 
     }
 }

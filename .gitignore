@@ -67,3 +67,4 @@ app.*.map.json
 /api/.idea
 /api/.vscode
 /api/backup
+/backup
