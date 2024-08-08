@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -15,61 +14,61 @@ return new class extends Migration
     public function up(): void
     {
         // Product Categories by store
-        Schema::create('product_categories', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('status')->default('active');
-            $table->string('thumbnail')->default('https://via.placeholder.com/150');
-            $table->timestamps();
-        });
+        // Schema::create('product_categories', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
+        //     $table->string('name');
+        //     $table->string('description')->nullable();
+        //     $table->string('status')->default('active');
+        //     $table->string('thumbnail')->default('https://via.placeholder.com/150');
+        //     $table->timestamps();
+        // });
 
-        Schema::create('brand', function (Blueprint $table) {
-            $table->id();
-            $table->string('brand_name');
-            $table->string('description')->nullable();
-            $table->string('status')->default('active');
-            $table->string('thumbnail')->default('https://via.placeholder.com/150');
-            $table->timestamps();
-        });
+        // Schema::create('brand', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('brand_name');
+        //     $table->string('description')->nullable();
+        //     $table->string('status')->default('active');
+        //     $table->string('thumbnail')->default('https://via.placeholder.com/150');
+        //     $table->timestamps();
+        // });
 
-        Schema::create('products12', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('status')->default('active');
-            $table->string('type')->default('product');
-            $table->float('mrp')->default(0);
-            $table->float('purchase_price')->default(0);
-            $table->float('selling_price')->default(0);
-            $table->string('thumbnail')->default('https://via.placeholder.com/350x450');
-            $table->json('gallery')->nullable();
-            $table->boolean('is_visible')->default(true);
-            $table->dateTime('availability');
-            $table->foreignId('category_id')->constrained('product_categories')->onDelete('cascade');
-            $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
-            $table->foreignId('brand_id')->constrained('brand')->onDelete('cascade');
-            $table->timestamps();
-        });
+        // Schema::create('products12', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->text('description')->nullable();
+        //     $table->string('status')->default('active');
+        //     $table->string('type')->default('product');
+        //     $table->float('mrp')->default(0);
+        //     $table->float('purchase_price')->default(0);
+        //     $table->float('selling_price')->default(0);
+        //     $table->string('thumbnail')->default('https://via.placeholder.com/350x450');
+        //     $table->json('gallery')->nullable();
+        //     $table->boolean('is_visible')->default(true);
+        //     $table->dateTime('availability');
+        //     $table->foreignId('category_id')->constrained('product_categories')->onDelete('cascade');
+        //     $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
+        //     $table->foreignId('brand_id')->constrained('brand')->onDelete('cascade');
+        //     $table->timestamps();
+        // });
 
-        Schema::create('inventory', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->string('sku')->unique();
-            $table->string('barcode')->unique();
-            $table->float('quantity')->default(0);
-            $table->float('security_stock')->default(0);
-            $table->timestamps();
-        });
+        // Schema::create('inventory', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+        //     $table->string('sku')->unique();
+        //     $table->string('barcode')->unique();
+        //     $table->float('quantity')->default(0);
+        //     $table->float('security_stock')->default(0);
+        //     $table->timestamps();
+        // });
 
-        Schema::create('shipping_details', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->boolean('is_backorder')->default(false);
-            $table->boolean('requires_shipping')->default(true);
-            $table->timestamps();
-        });
+        // Schema::create('shipping_details', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+        //     $table->boolean('is_backorder')->default(false);
+        //     $table->boolean('requires_shipping')->default(true);
+        //     $table->timestamps();
+        // });
 
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();

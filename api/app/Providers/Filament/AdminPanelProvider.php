@@ -24,8 +24,9 @@ use Joaopaulolndev\FilamentGeneralSettings\FilamentGeneralSettingsPlugin;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 use Tobiasla78\FilamentSimplePages\FilamentSimplePagesPlugin;
 use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
+use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
-use TomatoPHP\FilamentPlugins\FilamentPluginsPlugin;
+use TomatoPHP\FilamentLocations\FilamentLocationsPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -39,16 +40,14 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->registration()
             ->databaseNotifications()
-            ->emailVerification()
             ->passwordReset()
             ->profile(isSimple: false)
             ->colors([
                 'primary' => Color::Violet,
             ])
             ->spa()
-            //            ->unsavedChangesAlerts()
+            ->unsavedChangesAlerts()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -60,14 +59,22 @@ class AdminPanelProvider extends PanelProvider
                 FilamentProgressbarPlugin::make()->color('#29f'),
                 FilamentSimplePagesPlugin::make(),
                 FilamentUserActivityPlugin::make(),
+                FilamentAlertsPlugin::make(),
                 FilamentEcommercePlugin::make(),
+                FilamentLocationsPlugin::make(),
                 FilamentAccountsPlugin::make()
                     ->useAccountMeta()
+                    ->useNotifications()
+                    ->useLocations()
+                    ->useTypes()
                     ->showAddressField()
                     ->showTypeField()
                     ->useRequests()
                     ->useContactUs()
                     ->useLoginBy()
+                    ->canLogin()
+                    ->canBlocked()
+                    ->useTeams()
                     ->useAvatar()
                     ->useAPIs(),
                 FilamentGeneralSettingsPlugin::make()

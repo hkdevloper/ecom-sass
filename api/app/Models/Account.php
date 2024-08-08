@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasDefaultTenant;
 use Filament\Models\Contracts\HasTenants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +18,7 @@ use TomatoPHP\FilamentAccounts\Models\AccountRequest;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use TomatoPHP\FilamentAccounts\Traits\InteractsWithTenant;
+use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
 use TomatoPHP\FilamentLocations\Models\Location;
 
 /**
@@ -42,12 +45,13 @@ use TomatoPHP\FilamentLocations\Models\Location;
  * @property Model meta($key, $value)
  * @property Location[] $locations
  */
-class Account extends Authenticatable implements HasMedia, HasAvatar, HasTenants
+class Account extends Authenticatable implements HasMedia, FilamentUser, HasAvatar, HasTenants, HasDefaultTenant
 {
     use InteractsWithMedia;
     use HasApiTokens, HasFactory, Notifiable;
     use SoftDeletes;
     use InteractsWithTenant;
+    use InteractsWithNotifications;
 
     /**
      * @var array

@@ -16,15 +16,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('primary_phone')->unique();
-            $table->string('secondary_phone')->unique();
-            $table->string('profile_picture')->nullable();
+            // $table->string('primary_phone')->unique();
+            // $table->string('secondary_phone')->unique();
+            $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('address_id')->constrained('addresses')->onDelete('cascade');
-            $table->ipAddress();
-            $table->macAddress();
-            $table->rememberToken();
+            // $table->foreignId('address_id')->constrained('addresses')->onDelete('cascade');
+            $table->ipAddress()->nullable();
+            $table->macAddress()->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
 
@@ -32,11 +32,11 @@ return new class extends Migration
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@mail.com',
-            'primary_phone' => '1234567890',
-            'secondary_phone' => '1234567890',
+            //'primary_phone' => '1234567890',
+            // 'secondary_phone' => '1234567890',
             'password' => bcrypt('admin'),
             'email_verified_at' => now(),
-            'address_id' => 1,
+            // 'address_id' => 1,
             'ip_address' => '127.0.0.1',
             'mac_address' => '00:00:00:00:00:00',
             'created_at' => now(),

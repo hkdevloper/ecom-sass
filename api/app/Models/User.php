@@ -5,16 +5,29 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Edwink\FilamentUserActivity\Traits\UserActivityTrait;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasDefaultTenant;
+use Filament\Models\Contracts\HasTenants;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use TomatoPHP\FilamentAccounts\Traits\InteractsWithTenant;
+use TomatoPHP\FilamentAlerts\Traits\InteractsWithNotifications;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia, FilamentUser, HasAvatar, HasTenants, HasDefaultTenant
 {
+    use InteractsWithMedia;
+    use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
+    use InteractsWithTenant;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -22,6 +35,13 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use UserActivityTrait;
+    use InteractsWithNotifications;
+
+    // Get Filament Avatar
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return  $this->getFirstMediaUrl('avatar')?? null;
+    }
     /**
      * The attributes that are mass assignable.
      *

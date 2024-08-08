@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f6e8e21faf9b2ba9208d69ace7c4af0",
+    "content-hash": "4329018973ab7f9e6efe7a274d171b87",
     "packages": [
         {
             "name": "amendozaaguiar/filament-route-statistics",
@@ -2457,6 +2457,69 @@
             "time": "2024-05-20T16:26:42+00:00"
         },
         {
+            "name": "firebase/php-jwt",
+            "version": "v6.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "500501c2ce893c824c801da135d02661199f60c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/500501c2ce893c824c801da135d02661199f60c5",
+                "reference": "500501c2ce893c824c801da135d02661199f60c5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.4",
+                "phpspec/prophecy-phpunit": "^2.0",
+                "phpunit/phpunit": "^9.5",
+                "psr/cache": "^2.0||^3.0",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0"
+            },
+            "suggest": {
+                "ext-sodium": "Support EdDSA (Ed25519) signatures",
+                "paragonie/sodium_compat": "Support EdDSA (Ed25519) signatures when libsodium is not present"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "email": "neuman+pear@twilio.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "keywords": [
+                "jwt",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/firebase/php-jwt/issues",
+                "source": "https://github.com/firebase/php-jwt/tree/v6.10.1"
+            },
+            "time": "2024-05-18T18:05:11+00:00"
+        },
+        {
             "name": "flowframe/laravel-trend",
             "version": "v0.2.0",
             "source": {
@@ -3928,6 +3991,71 @@
                 "source": "https://github.com/laravel/serializable-closure"
             },
             "time": "2023-11-08T14:08:06+00:00"
+        },
+        {
+            "name": "laravel/slack-notification-channel",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/slack-notification-channel.git",
+                "reference": "8cd988fad1a08ed88dfd852f140477376c60217f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/slack-notification-channel/zipball/8cd988fad1a08ed88dfd852f140477376c60217f",
+                "reference": "8cd988fad1a08ed88dfd852f140477376c60217f",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/http": "^9.0|^10.0|^11.0",
+                "illuminate/notifications": "^9.0|^10.0|^11.0",
+                "illuminate/support": "^9.0|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0|^10.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Illuminate\\Notifications\\SlackChannelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Notifications\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Slack Notification Channel for laravel.",
+            "keywords": [
+                "laravel",
+                "notifications",
+                "slack"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/slack-notification-channel/issues",
+                "source": "https://github.com/laravel/slack-notification-channel/tree/v3.3.0"
+            },
+            "time": "2024-07-10T19:39:44+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -6614,6 +6742,48 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.12.4"
             },
             "time": "2024-06-10T01:18:23+00:00"
+        },
+        {
+            "name": "pusher/pusher-push-notifications",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pusher/push-notifications-php.git",
+                "reference": "6ec015243c18b0579c261c2decef99324d7452b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pusher/push-notifications-php/zipball/6ec015243c18b0579c261c2decef99324d7452b9",
+                "reference": "6ec015243c18b0579c261c2decef99324d7452b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "firebase/php-jwt": "^6.0",
+                "guzzlehttp/guzzle": "^7.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "doctrine/instantiator": "1.4.0",
+                "overtrue/phplint": "^4.0 || ^5.0",
+                "phpunit/phpunit": "^9.0",
+                "symfony/yaml": "^5.0 || ^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pusher\\PushNotifications\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "support": {
+                "issues": "https://github.com/pusher/push-notifications-php/issues",
+                "source": "https://github.com/pusher/push-notifications-php/tree/2.0.0"
+            },
+            "time": "2022-08-09T21:07:46+00:00"
         },
         {
             "name": "quadrubo/filament-model-settings",
@@ -10347,6 +10517,55 @@
             "time": "2024-07-26T12:41:01+00:00"
         },
         {
+            "name": "textalk/websocket",
+            "version": "1.5.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Textalk/websocket-php.git",
+                "reference": "d05dbaa97500176447ffb1f1800573f23085ab13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Textalk/websocket-php/zipball/d05dbaa97500176447ffb1f1800573f23085ab13",
+                "reference": "d05dbaa97500176447ffb1f1800573f23085ab13",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 | ^8.0",
+                "psr/log": "^1 | ^2 | ^3"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.0",
+                "phpunit/phpunit": "^8.0|^9.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WebSocket\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "ISC"
+            ],
+            "authors": [
+                {
+                    "name": "Fredrik Liljegren"
+                },
+                {
+                    "name": "Sören Jensen",
+                    "email": "soren@abicart.se"
+                }
+            ],
+            "description": "WebSocket client and server",
+            "support": {
+                "issues": "https://github.com/Textalk/websocket-php/issues",
+                "source": "https://github.com/Textalk/websocket-php/tree/1.5.8"
+            },
+            "time": "2022-04-26T06:28:24+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "v2.2.7",
             "source": {
@@ -10531,6 +10750,73 @@
             "time": "2023-02-12T12:00:38+00:00"
         },
         {
+            "name": "tomatophp/discord-notifications",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/discord-notifications.git",
+                "reference": "8567e8c1339417e096e63cf51917dd0af6e18752"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/discord-notifications/zipball/8567e8c1339417e096e63cf51917dd0af6e18752",
+                "reference": "8567e8c1339417e096e63cf51917dd0af6e18752",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "illuminate/console": "^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0",
+                "illuminate/notifications": "^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0",
+                "illuminate/queue": "^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0",
+                "illuminate/support": "^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0",
+                "php": "^7.2|^8.0|^8.1",
+                "textalk/websocket": "^1.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6.9",
+                "orchestra/testbench": "^6.0 || ^7.0 || ^8.0",
+                "phpunit/phpunit": "^8.5 || ^9.0 || ^10.0 || ^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NotificationChannels\\Discord\\DiscordServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NotificationChannels\\Discord\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cody Scott",
+                    "email": "cs475x@icloud.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel notification driver for Discord.",
+            "homepage": "https://github.com/laravel-notification-channels/discord",
+            "keywords": [
+                "channel",
+                "discord",
+                "driver",
+                "laravel",
+                "notification"
+            ],
+            "support": {
+                "source": "https://github.com/tomatophp/discord-notifications/tree/v1.0.0"
+            },
+            "time": "2024-03-12T18:50:09+00:00"
+        },
+        {
             "name": "tomatophp/filament-accounts",
             "version": "v2.0.7",
             "source": {
@@ -10599,6 +10885,84 @@
                 }
             ],
             "time": "2024-07-21T13:11:42+00:00"
+        },
+        {
+            "name": "tomatophp/filament-alerts",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-alerts.git",
+                "reference": "e25873c2674f8d584453f269078b69bd7d6dcc73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-alerts/zipball/e25873c2674f8d584453f269078b69bd7d6dcc73",
+                "reference": "e25873c2674f8d584453f269078b69bd7d6dcc73",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0.0",
+                "filament/notifications": "^3.0.0",
+                "filament/spatie-laravel-media-library-plugin": "^3.2",
+                "filament/spatie-laravel-translatable-plugin": "^3.2",
+                "laravel/slack-notification-channel": "^3.2",
+                "php": "^8.1|^8.2",
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/discord-notifications": "^1.0",
+                "tomatophp/filament-icons": "^1.0",
+                "tomatophp/filament-settings-hub": "^1.0",
+                "tomatophp/messagebird-notifications": "^1.0",
+                "tomatophp/pusher-notifications": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentAlerts\\FilamentAlertsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentAlerts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Send notification to users using notification templates and multi notification channels, it's support Filament Native Notification Service with macro, and a full integration to FCM service worker notifications",
+            "keywords": [
+                "FCM",
+                "alets",
+                "database",
+                "discord",
+                "email",
+                "filament",
+                "laravel",
+                "notifications",
+                "php",
+                "reverb",
+                "slack",
+                "tall stack"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-alerts/issues",
+                "source": "https://github.com/tomatophp/filament-alerts/tree/v2.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-24T13:53:07+00:00"
         },
         {
             "name": "tomatophp/filament-cms",
@@ -11132,6 +11496,142 @@
                 }
             ],
             "time": "2024-07-22T11:20:50+00:00"
+        },
+        {
+            "name": "tomatophp/messagebird-notifications",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/messagebird-notifications.git",
+                "reference": "657fc519d964ea62f64d7dfb60950f5edc413839"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/messagebird-notifications/zipball/657fc519d964ea62f64d7dfb60950f5edc413839",
+                "reference": "657fc519d964ea62f64d7dfb60950f5edc413839",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.8",
+                "illuminate/notifications": "^9.0|^10.0|^11.0",
+                "illuminate/queue": "^9.0|^10.0|^11.0",
+                "illuminate/support": "^9.0|^10.0|^11.0",
+                "php": "^8.0|^8.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4.4",
+                "phpunit/phpunit": "^9.5.10|^10.0|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NotificationChannels\\Messagebird\\MessagebirdServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NotificationChannels\\Messagebird\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Steenbergen",
+                    "email": "psteenbergen@gmail.com",
+                    "homepage": "https://3ws.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "MessageBird notification channel for Laravel 5.x",
+            "homepage": "https://github.com/laravel-notification-channels/messagebird",
+            "support": {
+                "source": "https://github.com/tomatophp/messagebird-notifications/tree/v1.0.0"
+            },
+            "time": "2024-03-12T18:58:05+00:00"
+        },
+        {
+            "name": "tomatophp/pusher-notifications",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/pusher-notifications.git",
+                "reference": "c6eb8fb45895dc17de5ca72146e36dddc8f18cdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/pusher-notifications/zipball/c6eb8fb45895dc17de5ca72146e36dddc8f18cdf",
+                "reference": "c6eb8fb45895dc17de5ca72146e36dddc8f18cdf",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/events": "~8.0 || ~9.0 || ^10.0 || ^11.0",
+                "illuminate/notifications": "~8.0 || ~9.0 || ^10.0|| ^11.0",
+                "illuminate/queue": "~8.0 || ~9.0 || ^10.0 || ^11.0",
+                "illuminate/support": "~8.0 || ~9.0 || ^10.0 || ^11.0",
+                "php": ">=8.0",
+                "pusher/pusher-push-notifications": "^2.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NotificationChannels\\PusherPushNotifications\\PusherPushNotificationsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NotificationChannels\\PusherPushNotifications\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed Said",
+                    "email": "themsaid@gmail.com",
+                    "homepage": "https://themsaid.com"
+                },
+                {
+                    "name": "Marcel Pociot",
+                    "email": "hello@marcelpociot.com",
+                    "homepage": "http://marcelpociot.com"
+                },
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be"
+                },
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://sebastiandedeyne.com"
+                }
+            ],
+            "description": "Pusher native Push Notifications driver.",
+            "homepage": "https://github.com/LaravelNotificationChannels/pusher-push-notifications",
+            "keywords": [
+                "laravel",
+                "notifications",
+                "pusher",
+                "pusher-push-notifications"
+            ],
+            "support": {
+                "source": "https://github.com/tomatophp/pusher-notifications/tree/v1.0.0"
+            },
+            "time": "2024-03-12T18:59:55+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
