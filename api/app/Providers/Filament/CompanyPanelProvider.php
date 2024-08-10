@@ -9,7 +9,6 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -18,46 +17,34 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
-use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
-use TomatoPHP\FilamentEcommerce\FilamentEcommercePlugin;
 
-class AdminPanelProvider extends PanelProvider
+class CompanyPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('admin')
-            ->path('admin')
+            ->id('company')
+            ->path('company')
             ->login()
+            ->registration()
             ->databaseNotifications()
+            ->emailVerification()
             ->passwordReset()
             ->profile(isSimple: false)
             ->colors([
-                'primary' => Color::Violet,
+                'primary' => Color::Blue,
             ])
             ->spa()
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->discoverResources(in: app_path('Filament/Company/Resources'), for: 'App\\Filament\\Company\\Resources')
+            ->discoverPages(in: app_path('Filament/Company/Pages'), for: 'App\\Filament\\Company\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->discoverWidgets(in: app_path('Filament/Company/Widgets'), for: 'App\\Filament\\Company\\Widgets')
+            ->widgets([ ])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29f'),
-                FilamentEcommercePlugin::make(),
-                FilamentAccountsPlugin::make()
-                    ->useLocations()
-                    ->useAccountMeta()
-                    ->showAddressField()
-                    ->showTypeField()
-                    ->useRequests()
-                    ->useContactUs()
-                    ->useLoginBy()
-                    ->useAvatar()
-                    ->useAPIs()
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
