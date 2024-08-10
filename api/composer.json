@@ -10,12 +10,19 @@
         "amendozaaguiar/filament-route-statistics": "^3.0",
         "aymanalhattami/filament-slim-scrollbar": "^2.0",
         "dotswan/filament-map-picker": "^1.2",
+        "edwink/filament-user-activity": "^1.0",
         "filament/filament": "3.2.81",
         "joaopaulolndev/filament-general-settings": "^1.0",
         "laravel/framework": "^11.0",
+        "laravel/jetstream": "^5.1",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.0",
         "njxqlus/filament-progressbar": "^1.0",
-        "quadrubo/filament-model-settings": "^1.3"
+        "quadrubo/filament-model-settings": "^1.3",
+        "tobiasla78/filament-simple-pages": "^0.4.0",
+        "tomatophp/filament-accounts": "^2.0",
+        "tomatophp/filament-ecommerce": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -67,7 +74,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "minimum-stability": "stable",
