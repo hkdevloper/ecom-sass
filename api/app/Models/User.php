@@ -2,26 +2,38 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-use Edwink\FilamentUserActivity\Traits\UserActivityTrait;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use TomatoPHP\FilamentAccounts\Traits\InteractsWithTenant;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, JWTSubject
 {
+    use HasFactory, Notifiable;
+    use InteractsWithMedia;
+    use SoftDeletes;
+    use InteractsWithTenant;
     use HasApiTokens;
     use HasFactory;
-    use HasProfilePhoto;
-    use HasTeams;
     use Notifiable;
-    use TwoFactorAuthenticatable;
-    use UserActivityTrait;
+
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+        return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return  $this->getFirstMediaUrl('avatar')?? null;
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -41,17 +53,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
     ];
 
     /**
@@ -65,5 +66,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
