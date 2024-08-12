@@ -1,6 +1,16 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
-	"features": {
-		"ghcr.io/cirolosapio/devcontainers-features/alpine-php-intl:0": {}
-	}
-}
+	"name": "PHP 8.3 Development Container",
+	"dockerFile": "Dockerfile",
+	"settings": {
+	  "php.validate.executablePath": "/usr/local/bin/php",
+	  "php.suggest.basic": false
+	},
+	"extensions": [
+	  "felipeochoa.vscode-php-intellisense",
+	  "mehedidracula.php-namespace-resolver",
+	  "xdebug.php-pack"
+	],
+	"postCreateCommand": "composer install",
+	"remoteUser": "vscode"
+  }
+  

@@ -1,0 +1,29 @@
+# Use an official PHP 8.3 image
+FROM php:8.3-fpm
+
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libicu-dev \
+    libxml2-dev \
+    libonig-dev \
+    libzip-dev \
+    unzip \
+    git \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && docker-php-ext-install intl mbstring mysqli zip
+
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
+WORKDIR /workspace
+
+# Expose port 9000 for the PHP-FPM server
+EXPOSE 9000
+
+# Start PHP-FPM server
+CMD ["php-fpm"]
