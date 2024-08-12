@@ -251,3 +251,12 @@ The project will leverage technologies like Flutter, Laravel, MySQL, and Google 
 The development process will follow a structured approach, including project planning, system design, implementation, testing, and deployment.
 
 By following this structured approach, the project aims to deliver a robust e-commerce platform tailored to the needs of diverse stores and their customers, with a focus on usability, security, and performance.
+
+# Install Php 8.2 version on codespace : 
+1. `oryx prep --skip-detection --platforms-and-versions 'php=8.2'`
+2. `sudo ln -s /opt/php/8.2.14/bin/php /usr/local/bin/php82`
+3. `sudo find / -name php.ini`
+4. `sudo add-apt-repository ppa:ondrej/php`
+5. `sudo apt-get install php8.2-intl`
+6. `sudo apt-get install php8.2-zip`
+7. `sudo vim /opt/php/8.2.14/ini/php.ini`
