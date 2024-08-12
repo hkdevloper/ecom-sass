@@ -12,7 +12,9 @@
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
 	"forwardPorts": [
 		8080,
-		3306
+		3306,
+		443,
+		80
 	],
 	"features": {
 		"ghcr.io/devcontainers/features/php:1": {},
