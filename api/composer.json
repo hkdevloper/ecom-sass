@@ -6,8 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "ext-pdo": "*",
-        "filament/filament": "^3.2.81",
+        "filament/filament": "3.2.98",
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/jetstream": "^5.1",
